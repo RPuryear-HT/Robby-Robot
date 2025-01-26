@@ -1,4 +1,4 @@
-#Show group memberships for a user
+# Show group memberships for a user
 $username = Read-Host "Enter the Username"
 $user = Get-ADUser -Identity $username -Properties memberof
 $groups = $user.memberof
