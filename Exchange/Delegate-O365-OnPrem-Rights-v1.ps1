@@ -1,4 +1,4 @@
-# Add on-prem "Send As" rights to an O365 mailbox
+# Add on-prem "Send As" rights to an O365 mailbox. Method 1 of 3.
 
 # Prompt the user to enter the mailbox logon name to delegate rights
 $delegatedbox = Read-Host "Enter the mailbox logon name to delegate rights"
@@ -37,4 +37,5 @@ Remove-PSSession $session
 # Remove all variables that are not read-only or constant
 Get-Variable | Where-Object { $_.Options -ne "ReadOnly" -and $_.Options -ne "Constant" } | Remove-Variable -ErrorAction SilentlyContinue
 
+# Reference article: https://learn.microsoft.com/en-us/powershell/module/exchange/add-recipientpermission?view=exchange-ps
 # Created by Robert Puryear # Updated 12/11/2024
