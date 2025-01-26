@@ -1,4 +1,4 @@
-# Unlock AD account and check lockout status # Created by Robert Puryear # Updated 2/24/23
+# Unlock AD account and check lockout status
 Import-Module ActiveDirectory
 $user = Read-Host "Enter Username to unlock"
 $ErrorActionPreference = 'Stop'
