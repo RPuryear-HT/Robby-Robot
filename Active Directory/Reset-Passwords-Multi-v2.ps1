@@ -14,7 +14,7 @@
                                                                                                                                         
 Description: Resets multiple AD account's passwords. 
 ==============================================================================================================================
-Note: Must have a user list located at C:\scripts\resets.txt. Must have a passowrd file here: C:\scripts\passfile.txt
+Note: Must have a user list located at C:\scripts\resets.txt. Must have a password file here: C:\scripts\passfile.txt
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
@@ -48,7 +48,7 @@ $usernames = Get-Content C:\scripts\resets.txt
 # Convert the usernames to uppercase
 $usernames = $usernames.ToUpper()
 
-# Read the encrypted password from a file
+# Read the password from a file
 $password = Get-Content C:\scripts\passfile.txt
 
 # Set the error action preference to continue on errors
