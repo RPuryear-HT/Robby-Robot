@@ -22,13 +22,13 @@
                                      \$$                                                                                   
 
                                                                                                                                         
-Description: Remove a list of users from any AD group.
+Description: Remove a list of users from an AD group.
 ==============================================================================================================================
-Note: Must have a list located in "C:\scripts\removeusers.txt".
+Note: Must have a user list located at "C:\scripts\removeusers.txt". This will not ask for confirmation. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
-Last Revision: 1/25/2025
+Last Revision: 1/27/2025
 ==============================================================================================================================
 
    ____ _                            _             
@@ -50,18 +50,20 @@ Added special characters and edited status messages.
 Added code execution timer. Formatted run time output message.
 1/25/2025
 Removed special characters to increase compatibility.
+1/27/2025
+Edited code to capture the group name before the script timer starts.
 ==============================================================================================================================
 
 #>
+
+# Prompt the user to enter the group name
+$group = Read-Host "Enter the group name"
 
 # Measure the time taken to run the script
 $runtime = Measure-Command {
 
 # Set the error action preference to stop on errors
 $ErrorActionPreference = "stop"
-
-# Prompt the user to enter the group name
-$group = Read-Host "Enter the group name"
 
 # Read the list of users to be removed from a file
 $userlist = Get-Content C:\scripts\removeusers.txt
@@ -84,6 +86,7 @@ Write-Output "Removed $total users from $group successfully" | Out-Host
 
 # Output a message to allow time for replication
 Write-Output "Please allow up to a few minutes to replicate" | Out-Host
+
 }
 
 # Format the total time with labels
@@ -92,7 +95,7 @@ $timeformat = "{0:00} Day(s) {1:00} Hour(s) {2:00} Minute(s) {3:00} Second(s) {4
 # Display the formatted time
 Write-Output "Total run time: $timeformat" | Out-Host
 
-# Clean up variables to avoid any conflicts or unnecessary data retention
+# Remove all variables that are not read-only or constant
 (Get-Variable).where({$_.Options -ne "ReadOnly" -and $_.Options -ne "Constant"}) | Remove-Variable -ErrorAction SilentlyContinue
 
 # Clear the content of the removeusers.txt file
