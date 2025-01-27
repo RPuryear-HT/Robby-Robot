@@ -21,8 +21,9 @@
                                                                                                              
 Description: Delete multiple AD accounts. 
 ==============================================================================================================================
-Note: Requires PowerShell 7. Must have a user list located at C:\scripts\deletes.txt. No spaces allowed in user list. 
-Will NOT prompt to confirm before performing deletions. Use at your own risk.
+Note: Requires PowerShell 7. Must have a user list located at C:\scripts\deletes.txt. Will NOT prompt to confirm before 
+performing deletions. The text file and any variables used are purged at script completion to avoid any conflicts or 
+unnecessary data retention. Backup your user list as needed, before executing. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
@@ -47,6 +48,7 @@ Added notes to the code.
 Added code execution timer. Formatted run time output message.
 Added code to trim any empty space from the username.
 Edited final output message.
+Updated the description.
 ==============================================================================================================================
 
 #>
