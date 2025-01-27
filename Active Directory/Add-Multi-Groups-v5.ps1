@@ -27,7 +27,7 @@ Description: Add a list of groups to a user.
 ==============================================================================================================================
 Note: Account credentials must have Active Directory Object permissions. Must have a list of groups at "C:\scripts\groups.txt".
 The text file and any variables used are purged at script completion to avoid any conflicts or unnecessary data retention. 
-Backup your user list as needed, before executing. Use at your own risk.
+Backup your group list as needed, before executing. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
