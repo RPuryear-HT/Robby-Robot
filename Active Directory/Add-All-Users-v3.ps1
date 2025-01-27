@@ -54,6 +54,9 @@ Added code execution timer. Formatted output message.
 # Import the Active Directory module
 Import-Module ActiveDirectory
 
+# Measure the time taken to run the script
+$runtime = Measure-Command {
+
 # Set the error action preference to 'Stop', which will halt script execution if any error occurs
 $ErrorActionPreference = 'Stop'
 
@@ -62,6 +65,14 @@ Get-ADUser -Filter 'SamAccountName -like "<TargetAccount>"' | ForEach-Object -Th
     # For each retrieved user, add them to the specified Active Directory group
     Add-ADGroupMember -Identity "<TargetGroup>" -Members $_.SamAccountName
 }
+
+}
+
+# Format the total time with labels
+$timeformat = "{0:00} Day(s) {1:00} Hour(s) {2:00} Minute(s) {3:00} Second(s) {4:000} Millisecond(s)" -f $runtime.Days, $runtime.Hours, $runtime.Minutes, $runtime.Seconds, $runtime.Milliseconds
+
+# Display the formatted time
+Write-Output "Total run time: $timeformat" | Out-Host
 
 # Output a message to the console indicating that all users were successfully added to the group, with the text in magenta
 Write-Host "All users were added to group successfully" -foregroundcolor Magenta
