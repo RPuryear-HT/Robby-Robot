@@ -92,7 +92,7 @@ $timeformat = "{0:00} Day(s) {1:00} Hour(s) {2:00} Minute(s) {3:00} Second(s) {4
 # Display the formatted time
 Write-Output "Total run time: $timeformat" | Out-Host
 
-# Remove all variables that are not read-only or constant
+# Clean up variables to avoid any conflicts or unnecessary data retention
 (Get-Variable).where({$_.Options -ne "ReadOnly" -and $_.Options -ne "Constant"}) | Remove-Variable -ErrorAction SilentlyContinue
 
 # Clear the content of the removeusers.txt file
