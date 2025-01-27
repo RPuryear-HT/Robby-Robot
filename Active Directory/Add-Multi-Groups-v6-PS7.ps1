@@ -25,7 +25,7 @@
                                                      
 Description: Add a list of groups to a user.
 ==============================================================================================================================
-Note: Require Powershell 7. Account credentials must have Active Directory Object permissions. Must have a list of groups 
+Note: Require PowerShell 7. Account credentials must have Active Directory Object permissions. Must have a list of groups 
 located at "C:\scripts\groups.txt". The text file and any variables used are purged at script completion to avoid any conflicts
 or unnecessary data retention. Backup your group list as needed, before executing. Use at your own risk.
 ==============================================================================================================================
