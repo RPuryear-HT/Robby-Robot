@@ -26,11 +26,12 @@ $$/      $$/  $$$$$$$/ $$/  $$/  $$/ $$$$$$$/   $$$$$$$/ $$/             $$/   $
 
 Description: Generate a report of an AD group's memberships. 
 ==============================================================================================================================
-Note: Outputs to C:\scriptsOutput\Group_Members_**.csv.
+Note: Outputs to C:\scriptsOutput\Group_Members_**.csv. This will take seconds up to several minutes to run depending on the 
+member count. Please wait for script completion messages. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
-Last Revision: 1/25/2025
+Last Revision: 1/27/2025
 ==============================================================================================================================
 
    ____ _                            _             
@@ -55,16 +56,14 @@ Changed output path to C:\scriptsOutput.
 Added code to test if the output path exists, creates if needed.
 1/25/2025
 Removed special characters to increase compatibility.
+1/27/2025
+Updated the description.
 ==============================================================================================================================
 
 #>
 
-# Test if output path exists, creates if needed
-$path = "C:\scriptsOutput"
-if (-not (Test-Path -Path $path)) {
-    New-Item -ItemType Directory -Path $path | Out-Null
-}
-
+# Import the Active Directory module
+Import-Module ActiveDirectory
 
 # Prompt the user to enter the group name
 $groupname = Read-Host "Enter the group name"
@@ -72,9 +71,16 @@ $groupname = Read-Host "Enter the group name"
 # Measure the time taken to run the script
 $runtime = Measure-Command {
 
+# Test if output path exists, creates if needed
+$path = "C:\scriptsOutput"
+if (-not (Test-Path -Path $path)) {
+    New-Item -ItemType Directory -Path $path | Out-Null
+}
+
 # Generate a timestamp label for the report file
 $label = Get-Date -Format 'yyyyMMddTHHmmss'
 
+# Output a message indicating the process of gathering group member information has started
 Write-Output "Gathering $groupname group member info... This may take some time..." | Out-Host
 
 # Retrieve the members of the group recursively and sort them by name
