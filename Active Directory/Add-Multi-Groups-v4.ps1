@@ -23,13 +23,14 @@
                                                      \$$                     
 
                                                      
-Description: Add a list of groups to any user.
+Description: Add a list of groups to a user.
 ==============================================================================================================================
-Note: Account credentials must have Active Directory Object permissions. Must have a list of groups located in "C:\scripts\groups.txt".
+Note: Account credentials must have Active Directory Object permissions. Must have a list of groups at "C:\scripts\groups.txt".
+The group list is purged at script completion. Backup your list, as needed. Run at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
-Last Revision: 1/25/2025
+Last Revision: 1/27/2025
 ==============================================================================================================================
 
    ____ _                            _             
@@ -50,9 +51,15 @@ Added special characters and edited completion message.
 Added execution timer. Formatted output message.
 1/25/2025
 Removed special characters to increase compatibility.
+1/27/2025
+Edited description and user prompts.
+Moved username prompt to run first, so not to count user input with total run time.
 ==============================================================================================================================
 
 #>
+
+# Prompt the user to enter the username
+$user = Read-Host "Enter the username"
 
 # Measure the time taken to run the script
 $runtime = Measure-Command {
@@ -62,9 +69,6 @@ $ErrorActionPreference = "stop"
 
 # Read the list of groups from a file
 $grouplist = Get-Content C:\scripts\groups.txt
-
-# Prompt the user to enter the username
-$user = Read-Host "Enter the username"
 
 # Loop through each group in the list and add the user to the specified group
 foreach ($group in $grouplist) {
@@ -81,7 +85,7 @@ $grouplist | Format-Table
 Write-Output "Added $total groups to $user successfully" | Out-Host
 
 # Display a message to allow time for synchronization
-Write-Output "Please allow up to a few minutes to replicate" | Out-Host
+Write-Output "Please allow time to replicate" | Out-Host
 }
 
 # Format the total time with labels
