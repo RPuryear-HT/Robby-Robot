@@ -20,9 +20,11 @@
                    \$$      \$$  \$$$$$$$ \$$  \$$  \$$ \$$$$$$$   \$$$$$$$ \$$       \$$$$$$$ 
                                                                                                
                                                                                                
-Description: Add a list of users to any AD group. 
+Description: Add a list of users to an AD group. 
 ==============================================================================================================================
-Note: Account credentials must have Active Directory Object permissions. Must have a list of users located in "C:\scripts\users.txt".
+Note: Account credentials must have Active Directory Object permissions. Must have a list of users at "C:\scripts\users.txt".
+The text file and any variables used are purged at script completion to avoid any conflicts or unnecessary data retention. 
+Backup your user list as needed, before executing. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
@@ -52,9 +54,14 @@ Added special characters and edited completion message.
 Added code execution timer. Formatted output message.
 1/25/2025
 Removed special characters to increase compatibility.
+1/27/2025
+Added code to import AD module.
 ==============================================================================================================================
 
 #>
+
+# Import the Active Directory module
+Import-Module ActiveDirectory 
 
 # Measure the time taken to run the script
 $runtime = Measure-Command {
@@ -93,7 +100,7 @@ $timeformat = "{0:00} Day(s) {1:00} Hour(s) {2:00} Minute(s) {3:00} Second(s) {4
 Write-Output "Total run time: $timeformat" | Out-Host
 
 # Remove all variables that are not read-only or constant
-Get-variable | Where-Object {$_.Options -ne "ReadOnly" -and $_.Options -ne "Constant"} | Remove-Variable -ErrorAction SilentlyContinue
+(Get-Variable).where({$_.Options -ne "ReadOnly" -and $_.Options -ne "Constant"}) | Remove-Variable -ErrorAction SilentlyContinue
 
 # Clear the content of the users.txt file
 Clear-Content C:\scripts\users.txt
