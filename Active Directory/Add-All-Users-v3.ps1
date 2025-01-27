@@ -22,16 +22,16 @@ $$$$$$$$\                                      $$\            $$$$$$\           
                             \______/                                                                 \__|                                                                                                             
 
                                                                                                
-Description: Add all like-named users to the target AD group.
+Description: Add all users to the target AD group based on the user nomenclature.
 ==============================================================================================================================
-Note: Requires PowerShell 7. Please replace <TargetAccount> and <TargetGroup> with your user and group name. Account credentials 
-must have Active Directory Object permissions. This will take seconds up to several minutes to run depending on the user count. 
-Please wait for script completion messages. Be sure all target users have the same characters in common. If unsure, please 
-research or use another method. Run at your own risk.
+Note: Requires PowerShell 7. Please replace <TargetAccount> and <TargetGroup> with your user's naming scheme and your group 
+name. Account credentials must have Active Directory Object permissions. This will take seconds up to several minutes to run 
+depending on the user count. Please wait for script completion messages. Be sure all target users have the same characters in 
+common. If unsure, please research or use another method. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
-Last Revision: 1/26/2025
+Last Revision: 1/27/2025
 ==============================================================================================================================
 
    ____ _                            _             
@@ -49,6 +49,8 @@ Added ASCII art.
 Added notes to the code.
 Added code execution timer. Formatted output message.
 Added code to remove any variables used.
+1/27/2025
+Updated the description.
 ==============================================================================================================================
 
 #>
