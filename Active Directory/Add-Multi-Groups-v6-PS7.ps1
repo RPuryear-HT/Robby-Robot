@@ -23,11 +23,11 @@
                                                      \$$                     
 
                                                      
-Description: Add a list of groups to any user.
+Description: Add a list of groups to a user.
 ==============================================================================================================================
 Note: Require Powershell 7. Account credentials must have Active Directory Object permissions. Must have a list of groups 
-located in "C:\scripts\groups.txt". The group list is purged at script completion. Backup your list, as needed. Use at your 
-own risk.
+located at "C:\scripts\groups.txt". The text file and any variables used are purged at script completion to avoid any conflicts
+or unnecessary data retention. Backup your group list as needed, before executing. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
@@ -96,6 +96,5 @@ Write-Output "Total run time: $timeformat" | Out-Host
 
 # Remove all variables that are not read-only or constant
 (Get-Variable).where({ $_.Options -ne "ReadOnly" -and $_.Options -ne "Constant" }) | Remove-Variable -ErrorAction SilentlyContinue
-
 # Clear the content of the groups.txt file
 Clear-Content C:\scripts\groups.txt
