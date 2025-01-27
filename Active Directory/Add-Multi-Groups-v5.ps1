@@ -1,4 +1,3 @@
-
 <#
 
   ______         __        __        __       __            __    __      __ 
@@ -27,7 +26,8 @@
 Description: Add a list of groups to a user.
 ==============================================================================================================================
 Note: Account credentials must have Active Directory Object permissions. Must have a list of groups at "C:\scripts\groups.txt".
-The group list is purged at script completion. Backup your list, as needed. Run at your own risk.
+The text file and any variables used are purged at script completion to avoid any conflicts or unnecessary data retention. 
+Backup your user list as needed, before executing. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
@@ -54,7 +54,7 @@ Added execution timer. Formatted output message.
 Removed special characters to increase compatibility.
 1/27/2025
 Edited description and user prompts.
-Moved username prompt to run first, so not to count user input with total run time.
+Moved username prompt to run first, so not to count the wait for user input with total run time.
 ==============================================================================================================================
 
 #>
