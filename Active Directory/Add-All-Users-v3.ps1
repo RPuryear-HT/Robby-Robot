@@ -22,11 +22,12 @@ $$$$$$$$\                                      $$\            $$$$$$\           
                             \______/                                                                 \__|                                                                                                             
 
                                                                                                
-Description: Add all like-named user names to the target AD group name.
+Description: Add all like-named users to the target AD group.
 ==============================================================================================================================
-Note: Requires PowerShell 7. Account credentials must have Active Directory Object permissions. This will take seconds up to 
-several minutes to run depending on the user count. Please wait for end message. Please replace <TargetAccount> and 
-<TargetGroup> with your user and group name. Be sure all target users have the same characters in common. Run at your own risk.
+Note: Requires PowerShell 7. Please replace <TargetAccount> and <TargetGroup> with your user and group name. Account credentials 
+must have Active Directory Object permissions. This will take seconds up to several minutes to run depending on the user count. 
+Please wait for script completion messages. Be sure all target users have the same characters in common. If unsure, please 
+research or use another method. Run at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
@@ -47,6 +48,7 @@ Added changelog.
 Added ASCII art.
 Added notes to the code.
 Added code execution timer. Formatted output message.
+Added code to remove any variables used.
 ==============================================================================================================================
 
 #>
@@ -76,3 +78,6 @@ Write-Output "Total run time: $timeformat" | Out-Host
 
 # Output a message to the console indicating that all users were successfully added to the group, with the text in magenta
 Write-Host "All users were added to group successfully" -foregroundcolor Magenta
+
+# Clean up variables to avoid any conflicts or unnecessary data retention
+(Get-Variable).where({$_.Options -ne "ReadOnly" -and $_.Options -ne "Constant"}) | Remove-Variable -ErrorAction SilentlyContinue
