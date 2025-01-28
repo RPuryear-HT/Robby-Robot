@@ -10,4 +10,4 @@ $delegateduser = Read-Host "Enter the target user's O365 email address."
 Set-Mailbox "$delegatedbox" -GrantSendOnBehalfTo @{add="$delegateduser"}
 
 # Reference article: https://answers.microsoft.com/en-us/msoffice/forum/all/add-send-on-behalf-permission-from-an-onprem/289a95ad-8178-4fb9-acd5-a376825151c9
-# Created by Robert Puryear # Updated 8/6/2024
+# Created by Robert Puryear 8/6/2024 # Updated 1/28/2025
