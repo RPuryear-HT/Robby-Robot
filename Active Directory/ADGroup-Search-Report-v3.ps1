@@ -58,7 +58,7 @@ Import-Module ActiveDirectory
 $runtime = Measure-Command {
 
 # Display message that search started
-Write-Output "Searching for group. This will take some time..." | Out-Host    
+Write-Output "Searching for the specified criteria. This will take some time..." | Out-Host    
 
 # Generate a timestamp label for the report file
 $label = Get-Date -Format 'yyyyMMddTHHmmss'
