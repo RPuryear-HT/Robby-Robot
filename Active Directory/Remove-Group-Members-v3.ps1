@@ -24,11 +24,14 @@
                                                                                                                                         
 Description: Remove a list of users from an AD group.
 ==============================================================================================================================
-Note: Must have a user list located at "C:\scripts\removeusers.txt". This will not ask for confirmation. Use at your own risk.
+Note: Must have a user list located at "C:\scripts\removeusers.txt". This will take milliseconds up to several minutes to run 
+depending on the user count. Please wait for script completion messages. This will NOT prompt for confirmation. The group list 
+and any variables used are purged at script completion to avoid any conflicts or unnecessary data retention. Backup your list, 
+as needed. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
-Last Revision: 1/27/2025
+Last Revision: 1/28/2025
 ==============================================================================================================================
 
    ____ _                            _             
@@ -52,6 +55,8 @@ Added code execution timer. Formatted run time output message.
 Removed special characters to increase compatibility.
 1/27/2025
 Edited code to capture the group name before the script timer starts.
+1/28/2025
+Updated description.
 ==============================================================================================================================
 
 #>
@@ -71,10 +76,13 @@ $userlist = Get-Content C:\scripts\removeusers.txt
 # Count the total number of users
 $total = $userlist.count
 
+
+# Output a message indicating the number of users being removed from the group
 Write-Output "Removing $total users from $group" | Out-Host
 
-# Loop through each user in the list and remove them from the specified group
+# Loop through each user in the list
 foreach ($user in $userlist) {
+    # Remove user from the specified group
     Remove-ADGroupMember $group -Members $user -Confirm:$False -ErrorAction SilentlyContinue
 }
 
