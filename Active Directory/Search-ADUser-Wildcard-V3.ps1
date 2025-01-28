@@ -4,6 +4,7 @@ Import-Module ActiveDirectory
 # Measure the time taken to run the script
 $runtime = Measure-Command {
 
+# Retrieve and display a list of Active Directory users whose names match the specific search pattern
 Get-ADUser -Filter {name -like "*<YourSearch>*"} -Properties * | Select-Object Name | Sort-Object name | Format-Table -Wrap -Autosize | Out-Host
 
 }
