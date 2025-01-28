@@ -1,4 +1,6 @@
 # Search AD users based on name. Requires editing.
+
+# Import the Active Directory module to use AD cmdlets
 Import-Module ActiveDirectory
 
 # Measure the time taken to run the script
