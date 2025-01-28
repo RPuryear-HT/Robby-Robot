@@ -1,5 +1,8 @@
 # Add on-prem "Send As" rights to an O365 mailbox. Method 1 of 3.
 
+# Set the error action preference to stop on errors
+$ErrorActionPreference = 'Stop'
+
 # Prompt the user to enter the mailbox logon name to delegate rights
 $delegatedbox = Read-Host "Enter the mailbox logon name to delegate rights"
 
@@ -14,9 +17,6 @@ Import-Module ExchangeOnlineManagement
 
 # Connect to Exchange Online without showing the banner
 Connect-ExchangeOnline -ShowBanner:$false
-
-# Set the error action preference to stop on errors
-$ErrorActionPreference = 'Stop'
 
 # Import the PowerShell session created for Exchange, allowing clobbering of existing commands and suppress warning banner
 Import-PSSession $session -AllowClobber 3>$null
