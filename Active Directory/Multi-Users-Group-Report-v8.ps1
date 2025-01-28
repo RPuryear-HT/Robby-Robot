@@ -21,13 +21,14 @@
                                        |__/                                |__/                                    
 
 
-Description: Generate a report of user's AD group memberships from a list of users. 
+Description: Generate a report of users' AD group memberships from a list of users. 
 ==============================================================================================================================
-Note: Must have a list of users located in C:\scripts\userlist.txt.
+Note: Must have a list of users located in C:\scripts\userlist.txt. This will take seconds up to several minutes to run 
+depending on the user/membership count. Please wait for script completion messages. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
-Last Revision: 1/25/2025
+Last Revision: 1/28/2025
 ==============================================================================================================================
 
    ____ _                            _             
@@ -55,6 +56,8 @@ Added code to trim empty space from the username.
 Added code to test if the output path exists, creates if needed.
 1/25/2025
 Removed special characters to increase compatibility.
+1/28/2025
+Updated description.
 ==============================================================================================================================
 
 #>
