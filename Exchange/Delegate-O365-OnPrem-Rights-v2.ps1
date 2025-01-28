@@ -1,5 +1,8 @@
 ﻿# Add on-prem "Send As" rights to an O365 mailbox. Method 2 of 3.
 
+# Set script to terminate upon an error
+$ErrorActionPreference = 'Stop'
+
 # Prompt the user to enter the group name to delegate rights
 $delegatedbox = Read-Host "Enter the group name to delegate rights"
 
