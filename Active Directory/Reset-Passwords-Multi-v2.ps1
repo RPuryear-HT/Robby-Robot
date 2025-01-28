@@ -12,13 +12,16 @@
                                                                                                                                         
                                                                                                                                         
                                                                                                                                         
-Description: Resets multiple AD account's passwords. 
+Description: Resets multiple AD accounts' passwords from a list of users. 
 ==============================================================================================================================
-Note: Must have a user list located at C:\scripts\resets.txt. Must have a password file here: C:\scripts\passfile.txt
+Note: Must have a user list located at C:\scripts\resets.txt. Must have a password file at C:\scripts\passfile.txt. This will 
+take milliseconds up to several minutes to run depending on the user count. Please wait for script completion messages. The 
+user list and any variables used are purged at script completion to avoid any conflicts or unnecessary data retention. Backup 
+your list, as needed. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
-Last Revision: 1/25/2025
+Last Revision: 1/28/2025
 ==============================================================================================================================
 
    ____ _                            _             
@@ -38,6 +41,8 @@ Added notes to the code.
 Added special characters and edited completion message.
 1/25/2025
 Removed special characters to increase compatibility.
+1/28/2025
+Updated description.
 ==============================================================================================================================
 
 #>
@@ -48,14 +53,15 @@ $usernames = Get-Content C:\scripts\resets.txt
 # Convert the usernames to uppercase
 $usernames = $usernames.ToUpper()
 
-# Read the password from a file
+# Read the encrypted password from a file
 $password = Get-Content C:\scripts\passfile.txt
 
 # Set the error action preference to continue on errors
 $ErrorActionPreference = "continue"
 
-# Loop through each username in the list and reset their password
+# Loop through each username in the list
 foreach ($username in $usernames) {
+    #  Reset user's password
     Set-ADAccountPassword -Identity $username -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $password -Force)
 }
 
