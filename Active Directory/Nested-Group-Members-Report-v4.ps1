@@ -23,13 +23,14 @@
                                                                                        \$$                                
 
 
-Description: Generate a report of the target AD group's members along with nested groups and their members.
+Description: Generate a report of the target AD group's memberships along with nested groups and their memberships.
 ==============================================================================================================================
-Note: Exports to "C:\scripts\<Group Name>_nested_members_report_...csv"
+Note: Exports to "C:\scripts\<Group Name>_nested_members_report_...csv". This will take seconds up to several minutes to run 
+depending on the member count. Please wait for script completion messages. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
-Last Revision: 1/25/2025
+Last Revision: 1/28/2025
 ==============================================================================================================================
 
    ____ _                            _             
@@ -54,6 +55,8 @@ Changed output path to C:\scriptsOutput.
 Added code to test if the output path exists, creates if needed.
 1/25/2025
 Removed special characters to increase compatibility.
+1/28/2025
+Updated description.
 ==============================================================================================================================
 
 #>
