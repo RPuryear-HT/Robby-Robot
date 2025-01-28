@@ -64,7 +64,7 @@ Write-Output "Searching for group. This will take some time..." | Out-Host
 $label = Get-Date -Format 'yyyyMMddTHHmmss'
 
 # Retrieve all user objects from Active Directory where the name matches the specified search pattern, sort by name and display out to the console
-Get-ADGroup -Filter {name -like "*<YourSearchTerm>*"} -Properties Description,info | Select-Object Name,samaccountname,Description,info | Sort-Object Name | Export-Csv -Path "C:\scriptsOutput\AD_Group_Search_$label.csv" -NoTypeInformation -Append | Out-Host
+Get-ADGroup -Filter {name -like "*<YourSearchTerm>*"} -Properties Description,info | Select-Object Name,samaccountname,Description,info | Sort-Object Name | Export-Csv -Path "C:\scriptsOutput\AD_Group_Search_$label.csv" -NoTypeInformation -Append
 
 # Display message that search ended
 Write-Output "Search complete. Report exported to C:\scriptsOutput\AD_Group_Search_$label.csv" | Out-Host    
