@@ -27,11 +27,12 @@ $$/      $$/  $$$$$$$/ $$/  $$/  $$/ $$$$$$$/   $$$$$$$/ $$/             $$/   $
 
 Description: Generate a report of multiple AD groups' memberships. 
 ==============================================================================================================================
-Note: Must have a list of groups located in C:\scripts\groups.txt.
+Note: Must have a list of groups located at C:\scripts\groups.txt. This will take seconds up to minutes to run depending on 
+the membership count. Please wait for script completion messages. Use at your own risk.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
-Last Revision: 1/25/2025
+Last Revision: 1/28/2025
 ==============================================================================================================================
 
    ____ _                            _             
@@ -59,6 +60,8 @@ Changed output path to C:\scriptsOutput.
 Added code to test if the output path exists, creates if needed.
 1/25/2025
 Removed special characters to increase compatibility.
+1/28/2025
+Updated description.
 ==============================================================================================================================
 
 #>
@@ -96,7 +99,7 @@ foreach ($groupname in $groupnames) {
             GroupName      = $groupname
             SamAccountName = $user.SamAccountName
             DisplayName    = $user.DisplayName
-        } | Export-Csv -Path C:\scriptsOutput\group_members_$label.csv -NoTypeInformation -Append
+        } | Export-Csv -Path C:\scriptsOutput\Group_Members_$label.csv -NoTypeInformation -Append
     }
 }
 
@@ -111,4 +114,4 @@ $timeformat = "{0:00} Day(s) {1:00} Hour(s) {2:00} Minute(s) {3:00} Second(s) {4
 Write-Output "Total run time: $timeformat" | Out-Host
 
 # Remove all variables that are not read-only or constant
-Get-variable | Where-Object {$_.Options -ne "ReadOnly" -and $_.Options -ne "Constant"} | Remove-Variable -ErrorAction SilentlyContinue
+(Get-Variable).where({$_.Options -ne "ReadOnly" -and $_.Options -ne "Constant"}) | Remove-Variable -ErrorAction SilentlyContinue
