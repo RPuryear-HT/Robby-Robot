@@ -16,7 +16,7 @@ $$ |  $$ |$$   ____|$$ |$$\       $$ |  $$ |$$ |  $$\ $$ |               $$ |$$ 
 
 Description: Pull folder permissions for a target network folder.
 ==============================================================================================================================
-Note: Account credentials must have server admin permissions.
+Note: Account credentials must have server admin permissions. This script can assist with access provisioning.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
