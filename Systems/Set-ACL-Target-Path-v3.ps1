@@ -54,7 +54,7 @@ do {
   Write-Host "6. Write: Allows the user to modify the contents of a file or directory." -ForegroundColor Yellow
   $type = Read-Host
   # Check if the choice matches the required pattern
-  if ($type -match "^(1|2|3|4|5|6|7)$") {
+  if ($type -match "^(1|2|3|4|5|6)$") {
     switch ($type) {
       "1" { $type = "FullControl" }
       "2" { $type = "Modify" }    
@@ -66,7 +66,7 @@ do {
     $valid = $true  # Set the valid flag to true if the choice is valid
   }
   else { # Display an error message and define the allowed characters
-    Write-Host "Selection is invalid. It must be a number range of 1-7." -ForegroundColor Red
+    Write-Host "Selection is invalid. It must be a number range of 1-6." -ForegroundColor Red
     $valid = $false  # Set the valid flag to false if the choice is invalid
   }
 } while (-not $valid)  # Repeat the loop until a valid choice is entered
