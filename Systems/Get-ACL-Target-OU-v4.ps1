@@ -14,9 +14,9 @@ $$ |  $$ |$$   ____|$$ |$$\       $$ |  $$ |$$ |  $$\ $$ |               $$ |$$ 
                                                                                                   \______/                                                                  
                                                                       
 
-Description: Pull permissions for a target Active Directory object.
+Description: Pull permissions for a target Active Directory Organizational Unit.
 ==============================================================================================================================
-Note: Account credentials must have admin permissions. This script can assist with identifying AD permissions.
+Note: Account credentials must have AD admin permissions. This script can assist with identifying OU permissions.
 ==============================================================================================================================
 Author: Robert Puryear
 ==============================================================================================================================
@@ -32,6 +32,8 @@ Last Revision: 1/10/2025
 ==============================================================================================================================
 1/10/2025
 Created original script.
+1/28/2025
+Updated the description.
 ==============================================================================================================================
 
 #>
@@ -44,6 +46,7 @@ $runtime = Measure-Command {
 
     # Retrieve the Access Control List (ACL) for the specified Active Directory object
     $acl = Get-ACL "AD:$($search)"
+    
     # Format the ACL entries to display specific properties and output the result to the host
     $acl.Access | Format-Table -Property IdentityReference, ActiveDirectoryRights, AccessControlType | Out-Host
 
