@@ -9,6 +9,9 @@ Import-PSSession $session -AllowClobber 3>$null
 # Import the Exchange Online Management module
 Import-Module ExchangeOnlineManagement
 
+# Prompt user to check for the Exchange Online logon window
+Write-Host "Waiting for user to authenticate.. Please check the Exchange Online logon window to continue.."
+
 # Connect to Exchange Online without showing the banner
 Connect-ExchangeOnline -ShowBanner:$false
 
